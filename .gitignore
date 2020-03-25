@@ -1,0 +1,69 @@
+target
+GTAGS
+GRTAGS
+GPATH
+prop
+out
+classes
+
+# OS X
+.DS_Store
+
+# eclipse
+.project
+.classpath
+.settings
+
+# intellij
+*.iml
+*.ipr
+*.iws
+.idea
+
+# editors
+*.sublime-project
+*.sublime-workspace
+*~
+
+# the build
+build-local.properties
+.gradle
+build
+cmake-build-debug
+cmake-build-release
+
+# cpp build linux
+cppbuild/CMakeCache.txt
+cppbuild/CMakeFiles/
+cppbuild/CTestTestfile.cmake
+cppbuild/Makefile
+cppbuild/Testing/
+cppbuild/aeron-common/
+cppbuild/aeron-samples/
+cppbuild/binaries/
+cppbuild/cmake_install.cmake
+
+# cpp build windows
+cppbuild/*.opensdf
+cppbuild/*.sdf
+cppbuild/*.sln
+cppbuild/*.suo
+cppbuild/*.vcxproj
+cppbuild/*.filters
+cppbuild/*.lastbuildstate
+cppbuild/*.tlog
+cppbuild/*.log
+cppbuild/*.cache
+cppbuild/Debug
+cppbuild/Release
+cppbuild/Win32
+
+# JVM crash reports
+hs_err_pid*
+
+# Archive and Cluster data from system tests
+/aeron-archive/*.rec
+/aeron-archive/*.catalog
+/aeron-archive/*.dat
+/aeron-cluster/*.dat
+/aeron-cluster/recording.log
