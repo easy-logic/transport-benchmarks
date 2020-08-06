@@ -33,9 +33,43 @@ subprojects {
     }
 }
 
-subprojects.findAll {it.name.contains("ping")}.forEach {
-    it.dependencies {
-        implementation("net.openhft:jlbh:1.0.1")
+subprojects.findAll {it.name.contains("ping")}.forEach { project ->
+    configure(project) {
+        dependencies {
+            implementation("net.openhft:jlbh:1.0.1")
+        }
+    }
+}
+
+import com.bmuschko.gradle.docker.tasks.image.*
+
+subprojects.findAll {it.name.contains("ping") or it.name.contains("pong")}.forEach { project ->
+    configure(project) {
+        ext {
+            imageName = "easy-logic/$project.name"
+        }
+
+        task removeImage(type: DockerRemoveImage) {
+            targetImageId(imageName)
+            onError { logger.warn(it.message) }
+        }
+
+        task copyDependencies(type: Copy) {
+            from configurations.default
+            into "$project.buildDir/libs"
+        }
+
+        task buildImage(type: DockerBuildImage) {
+            dependsOn removeImage
+            // spring boot compiles everything in a flat jar, so no need to copy dependencies
+            if (!project.name.contains("spring-boot-pong")) {
+                dependsOn copyDependencies
+            }
+            inputDir = project.projectDir
+            images.add("$imageName:latest")
+        }
+
+        build.dependsOn buildImage
     }
 }
 
