@@ -9,6 +9,7 @@ public class Common {
     public static final String RABBITMQ_PING_QUEUE = "ping";
     public static final String RABBITMQ_PONG_QUEUE = "pong";
 
+    public static final String SPRING_BOOT_HTTP_URL = "http://localhost:8080/";
     public static final String SPRING_BOOT_PING_PONG_ENDPOINT = "/ping-pong";
     public static final String SPRING_BOOT_TIME_PARAMETER_NAME = "time";
 

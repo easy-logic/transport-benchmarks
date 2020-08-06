@@ -9,12 +9,12 @@ import net.openhft.chronicle.core.jlbh.JLBHTask;
 
 public class SpringBootPingBenchmark implements JLBHTask {
 
-    public static final String URL = "http://localhost:8080/" + Common.SPRING_BOOT_PING_PONG_ENDPOINT;
+    public static final String URL = Common.SPRING_BOOT_HTTP_URL + Common.SPRING_BOOT_PING_PONG_ENDPOINT;
 
     private JLBH jlbh;
 
     public static void main(String[] args) {
-        //Create the JLBH options you require for the benchmark
+        //Create the JLBH options you require for the benchmark                     Rabb
         JLBHOptions lth = new JLBHOptions()
                 .warmUpIterations(50_000)
                 .iterations(10000)
@@ -29,6 +29,7 @@ public class SpringBootPingBenchmark implements JLBHTask {
     public void init(JLBH jlbh) {
         this.jlbh = jlbh;
 
+        System.out.println("Wait for server...");
         boolean noResponse = true;
         do {
             try {
@@ -38,6 +39,7 @@ public class SpringBootPingBenchmark implements JLBHTask {
 
             }
         } while (noResponse);
+        System.out.println("Server is up");
     }
 
     @Override
