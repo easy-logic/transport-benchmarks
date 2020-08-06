@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  md:
+    image: easy-logic/aeron-md
+    ipc: host
+    network_mode: host
+    container_name: md
+  pong: 
+    image: easy-logic/aeron-pong
+    ipc: host
+    depends_on: 
+        - md
+  ping:
+    image: easy-logic/aeron-ping
+    ipc: host
+    depends_on: 
+        - md
+        - pong

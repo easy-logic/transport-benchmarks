@@ -1,0 +1,43 @@
+plugins {
+	id 'com.bmuschko.docker-remote-api' version '6.6.1'
+}
+
+allprojects {
+    group = "io.easylogic"
+    version = "0.0.1-SNAPSHOT"
+}
+
+subprojects {
+    buildscript {
+        ext {
+            aeronVersion = "1.29.0"
+            jlbhVersion = "1.0.1"
+        }
+        repositories {
+            mavenCentral()
+            mavenLocal()
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+        }
+    }
+
+    apply plugin : "java"
+    apply plugin : "com.bmuschko.docker-remote-api"
+
+    sourceCompatibility = 8
+    targetCompatibility = 8
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects.findAll {it.name.contains("ping")}.forEach {
+    it.dependencies {
+        implementation("net.openhft:jlbh:1.0.1")
+    }
+}
+
+
+

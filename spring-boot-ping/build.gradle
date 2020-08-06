@@ -1,0 +1,29 @@
+dependencies {
+	implementation(project(":common"))
+	implementation("com.konghq:unirest-java:3.4.01")
+}
+
+ext {
+	imageName = "easy-logic/$project.name"
+}
+
+import com.bmuschko.gradle.docker.tasks.image.*
+
+task removeImage(type: DockerRemoveImage) {
+	targetImageId(imageName)
+	onError { logger.warn(it.message) }
+}
+
+task copyDependencies(type: Copy) {
+	from configurations.default
+	into "$project.buildDir/libs"
+}
+
+task buildImage(type: DockerBuildImage) {
+	dependsOn removeImage
+	dependsOn copyDependencies
+	inputDir = project.projectDir
+	images.add("$imageName:latest")
+}
+
+build.dependsOn buildImage

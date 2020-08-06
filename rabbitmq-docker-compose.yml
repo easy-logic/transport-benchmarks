@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    network_mode: host
+  pong:
+    image: easy-logic/rabbitmq-pong
+    network_mode: host
+    depends_on:
+        - rabbitmq
+  ping:
+    image: easy-logic/rabbitmq-ping
+    network_mode: host
+    depends_on:
+        - rabbitmq
+        - pong

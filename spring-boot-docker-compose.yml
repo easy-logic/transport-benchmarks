@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  pong:
+    image: easy-logic/spring-boot-pong
+    network_mode: host
+  ping:
+    image: easy-logic/spring-boot-ping
+    network_mode: host
+    depends_on:
+        - pong

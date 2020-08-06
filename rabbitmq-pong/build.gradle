@@ -1,0 +1,31 @@
+dependencies {
+	implementation(project(":common"))
+	implementation(group: "com.rabbitmq", name: "amqp-client", version: "5.8.0")
+	implementation(group: "com.google.guava", name: "guava", version: "28.2-jre")
+}
+
+
+ext {
+	imageName = "easy-logic/$project.name"
+}
+
+import com.bmuschko.gradle.docker.tasks.image.*
+
+task removeImage(type: DockerRemoveImage) {
+	targetImageId(imageName)
+	onError { logger.warn(it.message) }
+}
+
+task copyDependencies(type: Copy) {
+	from configurations.default
+	into "$project.buildDir/libs"
+}
+
+task buildImage(type: DockerBuildImage) {
+	dependsOn removeImage
+	dependsOn copyDependencies
+	inputDir = project.projectDir
+	images.add("$imageName:latest")
+}
+
+build.dependsOn buildImage
