@@ -45,31 +45,47 @@ import com.bmuschko.gradle.docker.tasks.image.*
 
 subprojects.findAll {it.name.contains("ping") or it.name.contains("pong")}.forEach { project ->
     configure(project) {
-        ext {
-            imageName = "easy-logic/$project.name"
-        }
-
-        task removeImage(type: DockerRemoveImage) {
-            targetImageId(imageName)
-            onError { logger.warn(it.message) }
-        }
-
-        task copyDependencies(type: Copy) {
-            from configurations.default
-            into "$project.buildDir/libs"
-        }
-
-        task buildImage(type: DockerBuildImage) {
-            dependsOn removeImage
-            // spring boot compiles everything in a flat jar, so no need to copy dependencies
-            if (!project.name.contains("spring-boot-pong")) {
-                dependsOn copyDependencies
+        apply plugin: 'application'
+        afterEvaluate {
+            ext {
+                imageName = "easy-logic/$project.name"
             }
-            inputDir = project.projectDir
-            images.add("$imageName:latest")
-        }
 
-        build.dependsOn buildImage
+            task removeImage(type: DockerRemoveImage) {
+                targetImageId(imageName)
+                onError { logger.warn(it.message) }
+            }
+
+            task copyDependencies(type: Copy) {
+                from configurations.default
+                into "$project.buildDir/libs"
+            }
+
+            task createDockerfile(type: Dockerfile) {
+                from "openjdk:8-alpine"
+                copyFile("libs/*.jar", "/app/")
+                if (!project.name.contains("spring-boot-pong")) {
+                    entryPoint("java", "-cp", "/app/*", project.application.mainClassName)
+                } else {
+                    entryPoint("java", "-jar", "/app/${project.jar.archiveFileName.get()}")
+                }
+            }
+
+            task buildImage(type: DockerBuildImage) {
+                // spring boot compiles everything in a flat jar, so no need to copy dependencies
+                if (!project.name.contains("spring-boot-pong")) {
+                    dependsOn copyDependencies
+                }
+                dependsOn createDockerfile
+                inputDir = project.buildDir
+                dockerFile = file("$project.buildDir/docker/Dockerfile")
+                images.add("$imageName:latest")
+            }
+
+            build.dependsOn buildImage
+            clean.dependsOn removeImage
+
+        }
     }
 }
 

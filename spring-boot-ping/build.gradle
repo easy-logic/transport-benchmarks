@@ -2,3 +2,7 @@ dependencies {
 	implementation(project(":common"))
 	implementation("com.konghq:unirest-java:3.4.01")
 }
+
+application {
+	mainClassName = "io.easylogic.benchmarks.spring.SpringBootPingBenchmark"
+}

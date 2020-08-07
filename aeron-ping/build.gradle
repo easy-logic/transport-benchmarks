@@ -1,3 +1,7 @@
 dependencies {
     implementation("io.aeron:aeron-all:$aeronVersion")
 }
+
+application {
+    mainClassName = "io.easylogic.benchmarks.AeronPingBenchmark"
+}

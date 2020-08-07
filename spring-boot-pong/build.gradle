@@ -8,3 +8,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.konghq:unirest-java:3.4.01")
 }
+
+application {
+	mainClassName = "io.easylogic.benchmarks.spring.SpringBootPongServer"
+}
+
+project.jar.archiveFile.get()
