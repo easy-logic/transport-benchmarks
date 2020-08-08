@@ -8,3 +8,4 @@ docker-compose -f rabbitmq-docker-compose.yml  up --abort-on-container-exit
 docker-compose -f rabbitmq-docker-compose.yml  down
 docker-compose -f spring-boot-docker-compose.yml  up --abort-on-container-exit
 docker-compose -f spring-boot-docker-compose.yml  down
+./gradlew clean

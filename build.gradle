@@ -62,7 +62,7 @@ subprojects.findAll {it.name.contains("ping") or it.name.contains("pong")}.forEa
             }
 
             task createDockerfile(type: Dockerfile) {
-                from "openjdk:8-alpine"
+                from "adoptopenjdk/openjdk14:alpine-jre"
                 copyFile("libs/*.jar", "/app/")
                 if (!project.name.contains("spring-boot-pong")) {
                     entryPoint("java", "-cp", "/app/*", project.application.mainClassName)
