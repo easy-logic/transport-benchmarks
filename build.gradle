@@ -1,5 +1,5 @@
 plugins {
-	id 'com.bmuschko.docker-remote-api' version '6.6.1'
+    id 'com.bmuschko.docker-remote-api' version '6.6.1'
 }
 
 allprojects {
@@ -22,8 +22,8 @@ subprojects {
         }
     }
 
-    apply plugin : "java"
-    apply plugin : "com.bmuschko.docker-remote-api"
+    apply plugin: "java"
+    apply plugin: "com.bmuschko.docker-remote-api"
 
     sourceCompatibility = 8
     targetCompatibility = 8
@@ -33,7 +33,7 @@ subprojects {
     }
 }
 
-subprojects.findAll {it.name.contains("ping")}.forEach { project ->
+subprojects.findAll { it.name.contains("ping") }.forEach { project ->
     configure(project) {
         dependencies {
             implementation("net.openhft:jlbh:1.0.1")
@@ -41,51 +41,51 @@ subprojects.findAll {it.name.contains("ping")}.forEach { project ->
     }
 }
 
-import com.bmuschko.gradle.docker.tasks.image.*
 
-subprojects.findAll {it.name.contains("ping") or it.name.contains("pong")}.forEach { project ->
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
+subprojects.findAll { it.name.contains("ping") or it.name.contains("pong") }.forEach { project ->
     configure(project) {
         apply plugin: 'application'
-        afterEvaluate {
-            ext {
-                imageName = "easy-logic/$project.name"
-            }
-
-            task removeImage(type: DockerRemoveImage) {
-                targetImageId(imageName)
-                onError { logger.warn(it.message) }
-            }
-
-            task copyDependencies(type: Copy) {
-                from configurations.default
-                into "$project.buildDir/libs"
-            }
-
-            task createDockerfile(type: Dockerfile) {
-                from "adoptopenjdk/openjdk14:alpine-jre"
-                copyFile("libs/*.jar", "/app/")
-                if (!project.name.contains("spring-boot-pong")) {
-                    entryPoint("java", "-cp", "/app/*", project.application.mainClassName)
-                } else {
-                    entryPoint("java", "-jar", "/app/${project.jar.archiveFileName.get()}")
-                }
-            }
-
-            task buildImage(type: DockerBuildImage) {
-                // spring boot compiles everything in a flat jar, so no need to copy dependencies
-                if (!project.name.contains("spring-boot-pong")) {
-                    dependsOn copyDependencies
-                }
-                dependsOn createDockerfile
-                inputDir = project.buildDir
-                dockerFile = file("$project.buildDir/docker/Dockerfile")
-                images.add("$imageName:latest")
-            }
-
-            build.dependsOn buildImage
-            clean.dependsOn removeImage
-
+        ext {
+            imageName = "easy-logic/$project.name"
         }
+
+        task removeImage(type: DockerRemoveImage) {
+            targetImageId(imageName)
+            onError { logger.warn(it.message) }
+        }
+
+        task copyDependencies(type: Copy) {
+            from configurations.default
+            into "$project.buildDir/libs"
+        }
+
+        task createDockerfile(type: Dockerfile) {
+            from "adoptopenjdk/openjdk14:alpine-jre"
+            copyFile("libs/*.jar", "/app/")
+            if (!project.name.contains("spring-boot-pong")) {
+                entryPoint(project.provider { ["java", "-cp", "/app/*", project.application.mainClassName] })
+            } else {
+                entryPoint(project.provider { ["java", "-jar", "/app/${project.jar.archiveFileName.get()}"] })
+            }
+        }
+
+        task buildImage(type: DockerBuildImage) {
+            // spring boot compiles everything in a flat jar, so no need to copy dependencies
+            if (!project.name.contains("spring-boot-pong")) {
+                dependsOn copyDependencies
+            }
+            dependsOn createDockerfile
+            inputDir = project.buildDir
+            dockerFile = file("$project.buildDir/docker/Dockerfile")
+            images.add("$imageName:latest")
+        }
+
+        build.dependsOn buildImage
+        clean.dependsOn removeImage
     }
 }
 
