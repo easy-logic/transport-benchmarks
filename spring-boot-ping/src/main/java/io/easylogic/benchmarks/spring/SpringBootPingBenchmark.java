@@ -1,8 +1,8 @@
 package io.easylogic.benchmarks.spring;
 
 import io.easylogic.benchmarks.Common;
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
+import kong.unirest.Config;
+import kong.unirest.UnirestInstance;
 import net.openhft.chronicle.core.jlbh.JLBH;
 import net.openhft.chronicle.core.jlbh.JLBHOptions;
 import net.openhft.chronicle.core.jlbh.JLBHTask;
@@ -11,13 +11,13 @@ public class SpringBootPingBenchmark implements JLBHTask {
 
     public static final String URL = Common.SPRING_BOOT_HTTP_URL + Common.SPRING_BOOT_PING_PONG_ENDPOINT;
 
+    private final UnirestInstance unirest = new UnirestInstance(new Config().concurrency(1, 1));
     private JLBH jlbh;
 
     public static void main(String[] args) {
-        //Create the JLBH options you require for the benchmark                     Rabb
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(50_000)
-                .iterations(10000)
+                .warmUpIterations(20_000)
+                .iterations(10_000)
                 .throughput(2000)
                 .runs(3)
                 .jlbhTask(new SpringBootPingBenchmark());
@@ -33,7 +33,7 @@ public class SpringBootPingBenchmark implements JLBHTask {
         boolean noResponse = true;
         do {
             try {
-                HttpResponse<Long> ping = ping(0);
+                unirest.post(URL).asEmpty();
                 noResponse = false;
             } catch (Exception e) {
 
@@ -44,18 +44,21 @@ public class SpringBootPingBenchmark implements JLBHTask {
 
     @Override
     public void run(long startTimeNS) {
-        HttpResponse<Long> ping = ping(startTimeNS);
-
-        jlbh.sample(System.nanoTime() - ping.getBody());
+        ping(startTimeNS);
     }
 
-    private HttpResponse<Long> ping(long startTimeNS) {
-        return Unirest.post(URL)
+    private void ping(long startTimeNS) {
+        unirest.post(URL)
                 .field(Common.SPRING_BOOT_TIME_PARAMETER_NAME, startTimeNS)
-                .asObject(Long.class);
+                .thenConsumeAsync(rawResponse -> {
+                    long responseTime = Long.parseLong(rawResponse.getContentAsString());
+                    jlbh.sample(System.nanoTime() - responseTime);
+                });
     }
 
     @Override
     public void complete() {
+        unirest.close();
     }
+
 }

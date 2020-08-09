@@ -27,8 +27,8 @@ public class RabbitPingBenchmark implements JLBHTask {
     public static void main(String[] args) throws TimeoutException {
         //Create the JLBH options you require for the benchmark
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(100_000)
-                .iterations(10000)
+                .warmUpIterations(20_000)
+                .iterations(10_000)
                 .throughput(2000)
                 .runs(3)
                 .jlbhTask(new RabbitPingBenchmark());

@@ -32,7 +32,7 @@ public class AeronPingBenchmark implements JLBHTask {
         //Create the JLBH options you require for the benchmark
         JLBHOptions lth = new JLBHOptions()
                 .warmUpIterations(100_000)
-                .iterations(100_000)
+                .iterations(50_000)
                 .throughput(10_000)
                 .runs(3)
                 .recordOSJitter(true)
