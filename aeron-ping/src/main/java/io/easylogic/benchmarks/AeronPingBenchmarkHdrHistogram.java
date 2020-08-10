@@ -29,8 +29,8 @@ public class AeronPingBenchmarkHdrHistogram implements AutoCloseable {
 
     public static void main(final String[] args) throws Exception {
         try (AeronPingBenchmarkHdrHistogram benchmark = new AeronPingBenchmarkHdrHistogram()) {
-            System.out.format("Warming up... %,d messages%n", Common.AERON_ITERATIONS);
-            for (int i = 0; i < Common.AERON_ITERATIONS; i++) {
+            System.out.format("Warming up... %,d messages%n", Common.AERON_WARMUP_ITERATIONS);
+            for (int i = 0; i < Common.AERON_WARMUP_ITERATIONS; i++) {
                 benchmark.ping();
             }
 
