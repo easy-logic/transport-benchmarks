@@ -12,6 +12,7 @@ subprojects {
         ext {
             aeronVersion = "1.29.0"
             jlbhVersion = "1.0.1"
+            hdrHistogramVersion = "2.1.12"
         }
         repositories {
             mavenCentral()
@@ -31,12 +32,14 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
 }
 
-subprojects.findAll { it.name.contains("ping") }.forEach { project ->
-    configure(project) {
+subprojects.findAll { it.name.contains("ping") }.forEach {
+    configure(it) {
         dependencies {
-            implementation("net.openhft:jlbh:1.0.1")
+            implementation("net.openhft:jlbh:$jlbhVersion")
+            implementation(project(":common"))
         }
     }
 }
@@ -52,6 +55,8 @@ subprojects.findAll { it.name.contains("ping") or it.name.contains("pong") }.for
         ext {
             imageName = "easy-logic/$project.name"
         }
+
+
 
         task removeImage(type: DockerRemoveImage) {
             targetImageId(imageName)

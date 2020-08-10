@@ -15,7 +15,7 @@ import static io.aeron.samples.SampleConfiguration.*;
 
 public class AeronPong {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         AtomicBoolean isRunning = new AtomicBoolean(true);
         SigInt.register(() -> {
             System.out.println("SIGINT signal");
@@ -37,15 +37,11 @@ public class AeronPong {
                 }
             };
 
-            System.out.println("Start Pong thread");
-            Thread pongThread = new Thread(() -> {
-                while (isRunning.get()) {
-                    idleStrategy.idle(pingSubscription.poll(fragmentHandler, FRAGMENT_COUNT_LIMIT));
-                }
-                System.out.println("Stopping pong thread...");
-            });
-            pongThread.start();
-            pongThread.join();
+            System.out.println("Start Pong");
+            while (isRunning.get()) {
+                idleStrategy.idle(pingSubscription.poll(fragmentHandler, FRAGMENT_COUNT_LIMIT));
+            }
+            System.out.println("Stopping pong...");
 
             System.out.println("Pong has been stopped");
         }

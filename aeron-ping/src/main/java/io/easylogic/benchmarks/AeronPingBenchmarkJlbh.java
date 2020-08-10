@@ -1,7 +1,6 @@
 package io.easylogic.benchmarks;
 
 import io.aeron.Aeron;
-import io.aeron.ExclusivePublication;
 import io.aeron.Publication;
 import io.aeron.Subscription;
 import io.aeron.logbuffer.FragmentHandler;
@@ -10,7 +9,6 @@ import net.openhft.chronicle.core.jlbh.JLBHOptions;
 import net.openhft.chronicle.core.jlbh.JLBHTask;
 import org.agrona.CloseHelper;
 import org.agrona.collections.MutableBoolean;
-import org.agrona.collections.MutableLong;
 import org.agrona.concurrent.BusySpinIdleStrategy;
 import org.agrona.concurrent.IdleStrategy;
 import org.agrona.concurrent.SleepingMillisIdleStrategy;
@@ -18,7 +16,7 @@ import org.agrona.concurrent.UnsafeBuffer;
 
 import static io.aeron.samples.SampleConfiguration.*;
 
-public class AeronPingBenchmark implements JLBHTask {
+public class AeronPingBenchmarkJlbh implements JLBHTask {
     private final IdleStrategy idleStrategy = new BusySpinIdleStrategy();
     private final MutableBoolean receivedMessage = new MutableBoolean(false);
     private final Aeron aeron;
@@ -31,16 +29,16 @@ public class AeronPingBenchmark implements JLBHTask {
     public static void main(String[] args) {
         //Create the JLBH options you require for the benchmark
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(100_000)
-                .iterations(50_000)
-                .throughput(10_000)
+                .warmUpIterations(Common.AERON_WARMUP_ITERATIONS)
+                .iterations(Common.AERON_ITERATIONS)
+                .throughput(Common.AERON_THROUGHPUT)
                 .runs(3)
                 .recordOSJitter(true)
-                .jlbhTask(new AeronPingBenchmark());
+                .jlbhTask(new AeronPingBenchmarkJlbh());
         new JLBH(lth).start();
     }
 
-    public AeronPingBenchmark() {
+    public AeronPingBenchmarkJlbh() {
         aeron = Aeron.connect();
         pingPublication = aeron.addExclusivePublication(PING_CHANNEL, PING_STREAM_ID);
         pongSubscription = aeron.addSubscription(PONG_CHANNEL, PONG_STREAM_ID);

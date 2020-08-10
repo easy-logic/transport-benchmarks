@@ -7,7 +7,7 @@ import net.openhft.chronicle.core.jlbh.JLBH;
 import net.openhft.chronicle.core.jlbh.JLBHOptions;
 import net.openhft.chronicle.core.jlbh.JLBHTask;
 
-public class SpringBootPingBenchmark implements JLBHTask {
+public class SpringBootPingBenchmarkJlbh implements JLBHTask {
 
     public static final String URL = Common.SPRING_BOOT_HTTP_URL + Common.SPRING_BOOT_PING_PONG_ENDPOINT;
 
@@ -16,11 +16,11 @@ public class SpringBootPingBenchmark implements JLBHTask {
 
     public static void main(String[] args) {
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(20_000)
-                .iterations(10_000)
+                .warmUpIterations(Common.SPRING_BOOT_WARMUP_ITERATIONS)
+                .iterations(Common.SPRING_BOOT_ITERATIONS)
                 .throughput(2000)
                 .runs(3)
-                .jlbhTask(new SpringBootPingBenchmark());
+                .jlbhTask(new SpringBootPingBenchmarkJlbh());
         new JLBH(lth).start();
     }
 

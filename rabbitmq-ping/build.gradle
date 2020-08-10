@@ -1,5 +1,4 @@
 dependencies {
-	implementation(project(":common"))
 	implementation(group: "com.rabbitmq", name: "amqp-client", version: "5.8.0")
 	implementation(group: "com.google.guava", name: "guava", version: "28.2-jre")
 }

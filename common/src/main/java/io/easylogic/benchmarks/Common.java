@@ -5,6 +5,17 @@ import java.util.concurrent.TimeoutException;
 
 public class Common {
 
+
+    public static final int AERON_WARMUP_ITERATIONS = 100_000;
+    public static final int AERON_ITERATIONS = 50_000;
+    public static final int AERON_THROUGHPUT = 10_000;
+    public static final int RABBIT_WARMUP_ITERATIONS = 20_000;
+    public static final int RABBIT_ITERATIONS = 10_000;
+    public static final int RABBIT_THROUGHPUT = 2_000;
+    public static final int SPRING_BOOT_WARMUP_ITERATIONS = 20_000;
+    public static final int SPRING_BOOT_ITERATIONS = 10_000;
+    public static final int SPRING_BOOT_THROUGHPUT = 2_000;
+
     public static final String RABBITMQ_HOST = "localhost";
     public static final String RABBITMQ_PING_QUEUE = "ping";
     public static final String RABBITMQ_PONG_QUEUE = "pong";

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeoutException;
 
 import static io.easylogic.benchmarks.Common.*;
 
-public class RabbitPingBenchmark implements JLBHTask {
+public class RabbitPingBenchmarkJlbh implements JLBHTask {
 
 
     private final Connection connection;
@@ -27,15 +27,15 @@ public class RabbitPingBenchmark implements JLBHTask {
     public static void main(String[] args) throws TimeoutException {
         //Create the JLBH options you require for the benchmark
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(20_000)
-                .iterations(10_000)
+                .warmUpIterations(RABBIT_WARMUP_ITERATIONS)
+                .iterations(RABBIT_ITERATIONS)
                 .throughput(2000)
                 .runs(3)
-                .jlbhTask(new RabbitPingBenchmark());
+                .jlbhTask(new RabbitPingBenchmarkJlbh());
         new JLBH(lth).start();
     }
 
-    public RabbitPingBenchmark() throws TimeoutException {
+    public RabbitPingBenchmarkJlbh() throws TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setConnectionTimeout(2000);
         connectionFactory.setHost(RABBITMQ_HOST);
