@@ -29,7 +29,7 @@ public class RabbitPingBenchmarkJlbh implements JLBHTask {
         JLBHOptions lth = new JLBHOptions()
                 .warmUpIterations(RABBITMQ_WARMUP_ITERATIONS)
                 .iterations(RABBITMQ_ITERATIONS)
-                .throughput(2000)
+                .throughput(RABBITMQ_THROUGHPUT)
                 .runs(3)
                 .jlbhTask(new RabbitPingBenchmarkJlbh());
         new JLBH(lth).start();

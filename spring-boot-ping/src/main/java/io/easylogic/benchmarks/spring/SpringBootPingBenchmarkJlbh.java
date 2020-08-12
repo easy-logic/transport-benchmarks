@@ -1,24 +1,25 @@
 package io.easylogic.benchmarks.spring;
 
-import io.easylogic.benchmarks.Common;
 import kong.unirest.Config;
 import kong.unirest.UnirestInstance;
 import net.openhft.chronicle.core.jlbh.JLBH;
 import net.openhft.chronicle.core.jlbh.JLBHOptions;
 import net.openhft.chronicle.core.jlbh.JLBHTask;
 
+import static io.easylogic.benchmarks.Common.*;
+
 public class SpringBootPingBenchmarkJlbh implements JLBHTask {
 
-    public static final String URL = Common.SPRING_BOOT_HTTP_URL + Common.SPRING_BOOT_PING_PONG_ENDPOINT;
+    public static final String URL = SPRING_BOOT_HTTP_URL + SPRING_BOOT_PING_PONG_ENDPOINT;
 
     private final UnirestInstance unirest = new UnirestInstance(new Config().concurrency(1, 1));
     private JLBH jlbh;
 
     public static void main(String[] args) {
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(Common.SPRING_BOOT_WARMUP_ITERATIONS)
-                .iterations(Common.SPRING_BOOT_ITERATIONS)
-                .throughput(2000)
+                .warmUpIterations(SPRING_BOOT_WARMUP_ITERATIONS)
+                .iterations(SPRING_BOOT_ITERATIONS)
+                .throughput(SPRING_BOOT_THROUGHPUT)
                 .runs(3)
                 .jlbhTask(new SpringBootPingBenchmarkJlbh());
         new JLBH(lth).start();
@@ -49,7 +50,7 @@ public class SpringBootPingBenchmarkJlbh implements JLBHTask {
 
     private void ping(long startTimeNS) {
         unirest.post(URL)
-                .field(Common.SPRING_BOOT_TIME_PARAMETER_NAME, startTimeNS)
+                .field(SPRING_BOOT_TIME_PARAMETER_NAME, startTimeNS)
                 .thenConsumeAsync(rawResponse -> {
                     long responseTime = Long.parseLong(rawResponse.getContentAsString());
                     jlbh.sample(System.nanoTime() - responseTime);

@@ -16,6 +16,7 @@ import org.agrona.concurrent.UnsafeBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static io.aeron.samples.SampleConfiguration.*;
+import static io.easylogic.benchmarks.Common.*;
 
 public class AeronPingBenchmarkJlbhSeparateThread implements JLBHTask {
     private final IdleStrategy idleStrategy = new BusySpinIdleStrategy();
@@ -29,9 +30,9 @@ public class AeronPingBenchmarkJlbhSeparateThread implements JLBHTask {
     public static void main(String[] args) {
         //Create the JLBH options you require for the benchmark
         JLBHOptions lth = new JLBHOptions()
-                .warmUpIterations(Common.AERON_WARMUP_ITERATIONS)
-                .iterations(Common.AERON_ITERATIONS)
-                .throughput(Common.AERON_THROUGHPUT)
+                .warmUpIterations(AERON_WARMUP_ITERATIONS)
+                .iterations(AERON_ITERATIONS)
+                .throughput(AERON_THROUGHPUT)
                 .runs(3)
                 .recordOSJitter(true)
                 .jlbhTask(new AeronPingBenchmarkJlbhSeparateThread());
