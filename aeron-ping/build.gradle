@@ -1,8 +1,7 @@
 dependencies {
     implementation("io.aeron:aeron-all:$aeronVersion")
-    implementation "org.hdrhistogram:HdrHistogram:${hdrHistogramVersion}"
 }
 
 application {
-    mainClassName = "io.easylogic.benchmarks.AeronPingBenchmark"
+    mainClassName = "io.easylogic.benchmarks.AeronPingBenchmarkJlbh"
 }

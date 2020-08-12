@@ -38,8 +38,9 @@ subprojects {
 subprojects.findAll { it.name.contains("ping") }.forEach {
     configure(it) {
         dependencies {
-            implementation("net.openhft:jlbh:$jlbhVersion")
             implementation(project(":common"))
+            implementation("net.openhft:jlbh:$jlbhVersion")
+            implementation "org.hdrhistogram:HdrHistogram:${hdrHistogramVersion}"
         }
     }
 }
