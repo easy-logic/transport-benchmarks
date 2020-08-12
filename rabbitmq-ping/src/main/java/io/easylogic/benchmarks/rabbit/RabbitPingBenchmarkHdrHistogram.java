@@ -26,8 +26,8 @@ public class RabbitPingBenchmarkHdrHistogram implements AutoCloseable{
 
     public static void main(String[] args) throws TimeoutException {
         try (RabbitPingBenchmarkHdrHistogram benchmark = new RabbitPingBenchmarkHdrHistogram()) {
-            System.out.format("Warming up... %,d messages%n", Common.RABBIT_WARMUP_ITERATIONS);
-            for (int i = 0; i < RABBIT_WARMUP_ITERATIONS; i++) {
+            System.out.format("Warming up... %,d messages%n", Common.RABBITMQ_WARMUP_ITERATIONS);
+            for (int i = 0; i < RABBITMQ_WARMUP_ITERATIONS; i++) {
                 benchmark.ping();
             }
 
@@ -35,8 +35,8 @@ public class RabbitPingBenchmarkHdrHistogram implements AutoCloseable{
                 HISTOGRAM.reset();
             }
 
-            System.out.format("Pinging %,d messages%n", RABBIT_ITERATIONS);
-            for (int i = 0; i < RABBIT_ITERATIONS; i++) {
+            System.out.format("Pinging %,d messages%n", RABBITMQ_ITERATIONS);
+            for (int i = 0; i < RABBITMQ_ITERATIONS; i++) {
                 benchmark.ping();
             }
             

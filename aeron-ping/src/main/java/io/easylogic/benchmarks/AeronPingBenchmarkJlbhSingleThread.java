@@ -16,7 +16,7 @@ import org.agrona.concurrent.UnsafeBuffer;
 
 import static io.aeron.samples.SampleConfiguration.*;
 
-public class AeronPingBenchmarkJlbh implements JLBHTask {
+public class AeronPingBenchmarkJlbhSingleThread implements JLBHTask {
     private final IdleStrategy idleStrategy = new BusySpinIdleStrategy();
     private final MutableBoolean receivedMessage = new MutableBoolean(false);
     private final Aeron aeron;
@@ -34,11 +34,11 @@ public class AeronPingBenchmarkJlbh implements JLBHTask {
                 .throughput(Common.AERON_THROUGHPUT)
                 .runs(3)
                 .recordOSJitter(true)
-                .jlbhTask(new AeronPingBenchmarkJlbh());
+                .jlbhTask(new AeronPingBenchmarkJlbhSingleThread());
         new JLBH(lth).start();
     }
 
-    public AeronPingBenchmarkJlbh() {
+    public AeronPingBenchmarkJlbhSingleThread() {
         aeron = Aeron.connect();
         pingPublication = aeron.addExclusivePublication(PING_CHANNEL, PING_STREAM_ID);
         pongSubscription = aeron.addSubscription(PONG_CHANNEL, PONG_STREAM_ID);
