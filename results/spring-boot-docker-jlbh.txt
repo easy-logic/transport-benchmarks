@@ -1,0 +1,64 @@
+Attaching to transport-benchmarks_pong_1, transport-benchmarks_ping_1
+ SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+ SLF4J: Defaulting to no-operation (NOP) logger implementation
+ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+ Wait for server...
+
+   .   ____          _            __ _ _
+  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+ ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+   '  |____| .__|_| |_|_| |_\__, | / / / /
+  =========|_|==============|___/=/_/_/_/
+  :: Spring Boot ::        (v2.2.5.RELEASE)
+
+ 2020-08-14 14:25:12.515  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Starting SpringBootPongServer on QVava with PID 1 (/app/spring-boot-pong-0.0.1-SNAPSHOT.jar started by root in /)
+ 2020-08-14 14:25:12.521  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : No active profile set, falling back to default profiles: default
+ 2020-08-14 14:25:14.075  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+ 2020-08-14 14:25:14.092  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+ 2020-08-14 14:25:14.092  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+ 2020-08-14 14:25:14.202  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+ 2020-08-14 14:25:14.202  INFO 1 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1601 ms
+ 2020-08-14 14:25:14.509  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+ 2020-08-14 14:25:14.845  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+ 2020-08-14 14:25:14.850  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Started SpringBootPongServer in 3.069 seconds (JVM running for 3.665)
+ 2020-08-14 14:25:14.931  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ 2020-08-14 14:25:14.932  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ 2020-08-14 14:25:14.941  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+ 2020-08-14 14:25:14.983  WARN 1 --- [nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required long parameter 'time' is not present]
+ Server is up
+ Complete: 2722
+ Complete: 6541
+ Complete: 12814
+ Complete: 20000
+ Warm up complete (20000 iterations took 10.188s)
+ -------------------------------- BENCHMARK RESULTS (RUN 1) --------------------------------------------------------
+ Run time: 5.0s
+ Correcting for co-ordinated:true
+ Target throughput:2000/s = 1 message every 500us
+ End to End: (10,000)                            50/90 99/99.9 99.99 - worst was 237 / 298  2,180 / 12,770  14,140 - 14,140
+ OS Jitter (13,124)                              50/90 99/99.9 99.99 - worst was 9.4 / 12  26 / 732  33,300 - 39,500
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- BENCHMARK RESULTS (RUN 2) --------------------------------------------------------
+ Run time: 5.0s
+ Correcting for co-ordinated:true
+ Target throughput:2000/s = 1 message every 500us
+ End to End: (10,000)                            50/90 99/99.9 99.99 - worst was 223 / 276  589 / 4,970  6,220 - 6,220
+ OS Jitter (3,271)                               50/90 99/99.9 99.99 - worst was 8.5 / 10  34 / 119  1,040 - 1,040
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- BENCHMARK RESULTS (RUN 3) --------------------------------------------------------
+ Run time: 5.0s
+ Correcting for co-ordinated:true
+ Target throughput:2000/s = 1 message every 500us
+ End to End: (10,000)                            50/90 99/99.9 99.99 - worst was 212 / 265  523 / 1,580  4,490 - 4,490
+ OS Jitter (2,033)                               50/90 99/99.9 99.99 - worst was 4.3 / 10  13 / 136  927 - 927
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- SUMMARY (end to end) -----------------------------------------------------------
+ Percentile   run1         run2         run3      % Variation
+ 50:           236.61       222.91       211.65         3.43
+ 90:           297.86       275.84       264.83         2.70
+ 99:          2180.10       588.54       523.39         7.66
+ worst:      14135.30      6223.87      4487.17        20.51
+ -------------------------------------------------------------------------------------------------------------------
+transport-benchmarks_ping_1 exited with code 0
+Aborting on container exit...

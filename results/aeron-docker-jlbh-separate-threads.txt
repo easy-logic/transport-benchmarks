@@ -1,0 +1,38 @@
+Attaching to md, transport-benchmarks_pong_1, transport-benchmarks_ping_1
+ Connect to Aeron...
+ Start Pong
+ SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+ SLF4J: Defaulting to no-operation (NOP) logger implementation
+ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+ Warm up complete (100000 iterations took 1.984s)
+ -------------------------------- BENCHMARK RESULTS (RUN 1) --------------------------------------------------------
+ Run time: 5.001s
+ Correcting for co-ordinated:true
+ Target throughput:10000/s = 1 message every 100us
+ End to End: (50,000)                            50/90 99/99.9 99.99 - worst was 547 / 974  1,070 / 2,690  4,800 - 5,200
+ OS Jitter (5,996)                               50/90 99/99.9 99.99 - worst was 1.8 / 10  66 / 4,000  21,780 - 21,780
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- BENCHMARK RESULTS (RUN 2) --------------------------------------------------------
+ Run time: 5.0s
+ Correcting for co-ordinated:true
+ Target throughput:10000/s = 1 message every 100us
+ End to End: (50,000)                            50/90 99/99.9 99.99 - worst was 567 / 1,010  6,470 / 14,450  15,950 - 16,310
+ OS Jitter (4,028)                               50/90 99/99.9 99.99 - worst was 1.8 / 7.0  58 / 144  4,760 - 4,760
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- BENCHMARK RESULTS (RUN 3) --------------------------------------------------------
+ Run time: 5.0s
+ Correcting for co-ordinated:true
+ Target throughput:10000/s = 1 message every 100us
+ End to End: (50,000)                            50/90 99/99.9 99.99 - worst was 554 / 988  11,370 / 26,350  27,840 - 27,940
+ OS Jitter (4,052)                               50/90 99/99.9 99.99 - worst was 1.8 / 5.3  17 / 333  1,470 - 1,470
+ -------------------------------------------------------------------------------------------------------------------
+ -------------------------------- SUMMARY (end to end) -----------------------------------------------------------
+ Percentile   run1         run2         run3      % Variation
+ 50:           547.07       567.04       553.73         1.58
+ 90:           973.57      1010.43       987.90         1.50
+ 99:          1070.59      6469.63     11366.40        33.54
+ 99.7:        1624.58     11194.37     22962.18        41.20
+ worst:       5203.97     16314.37     27942.91        32.21
+ -------------------------------------------------------------------------------------------------------------------
+transport-benchmarks_ping_1 exited with code 0
+Aborting on container exit...
