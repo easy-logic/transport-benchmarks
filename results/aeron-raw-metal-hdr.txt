@@ -1,6 +1,3 @@
-Wait for Pong...
-Warming up... 100,000 messages
-Pinging 50,000 messages
 Histogram of RTT latencies in microseconds.
        Value     Percentile TotalCount 1/(1-Percentile)
 
