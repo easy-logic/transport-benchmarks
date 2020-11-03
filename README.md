@@ -1,5 +1,5 @@
 # transport-benchmarks
-measure latency for different transports with jlbh 
+measure latency for different transports with [HdrHistogram](http://hdrhistogram.org/)
 
 ## How to build
 
@@ -9,6 +9,8 @@ This command will create docker containers for every ping and pong components fo
 ```
 
 ## How to run 
+
+For the sake of convenience there is a bash script `run.sh` which runs all presented benchmarks.
 
 ### Aeron
 
@@ -20,7 +22,9 @@ docker-compose -f aeron-docker-compose.yml  up --abort-on-container-exit
 Clean up 
 ```bash  
 docker-compose -f aeron-docker-compose.yml  down
-```
+```            
+
+or you can use `run-aeron.sh` script (it will build images, run the measurement with docker and clean up the containers)
 
 ### RabbitMQ
 
@@ -33,6 +37,7 @@ Clean up
 ```bash  
 docker-compose -f rabbitmq-docker-compose.yml  down
 ```
+or you can use `run-rabbitmq.sh` script (it will build images, run the measurement with docker and clean up the containers)
 
 ### Spring boot
 
@@ -46,3 +51,4 @@ Clean up
 docker-compose -f spring-boot-docker-compose.yml  down
 ```
 
+or you can use `run-spring-boot.sh` script (it will build images, run the measurement with docker and clean up the containers)
