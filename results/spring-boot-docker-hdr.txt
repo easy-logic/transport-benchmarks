@@ -8,98 +8,96 @@ Attaching to transport-benchmarks_pong_1, transport-benchmarks_ping_1
   =========|_|==============|___/=/_/_/_/
   :: Spring Boot ::        (v2.2.5.RELEASE)
 
- 2020-08-14 14:38:55.215  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Starting SpringBootPongServer on QVava with PID 1 (/app/spring-boot-pong-0.0.1-SNAPSHOT.jar started by root in /)
- 2020-08-14 14:38:55.218  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : No active profile set, falling back to default profiles: default
- 2020-08-14 14:38:56.364  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
- 2020-08-14 14:38:56.375  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
- 2020-08-14 14:38:56.376  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
- 2020-08-14 14:38:56.436  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
- 2020-08-14 14:38:56.437  INFO 1 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1167 ms
- 2020-08-14 14:38:56.613  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
- 2020-08-14 14:38:56.814  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
- 2020-08-14 14:38:56.818  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Started SpringBootPongServer in 2.002 seconds (JVM running for 2.505)
+ 2020-11-03 00:51:09.730  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Starting SpringBootPongServer on QVava with PID 1 (/app/spring-boot-pong-0.0.1-SNAPSHOT.jar started by root in /)
+ 2020-11-03 00:51:09.734  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : No active profile set, falling back to default profiles: default
+ 2020-11-03 00:51:10.857  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9999 (http)
+ 2020-11-03 00:51:10.870  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+ 2020-11-03 00:51:10.870  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+ 2020-11-03 00:51:10.932  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+ 2020-11-03 00:51:10.932  INFO 1 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1147 ms
+ 2020-11-03 00:51:11.119  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+ 2020-11-03 00:51:11.322  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9999 (http) with context path ''
+ 2020-11-03 00:51:11.325  INFO 1 --- [           main] i.e.b.spring.SpringBootPongServer        : Started SpringBootPongServer in 2.019 seconds (JVM running for 2.537)
  Wait for server...
- 2020-08-14 14:39:01.515  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
- 2020-08-14 14:39:01.515  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
- 2020-08-14 14:39:01.520  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
- 2020-08-14 14:39:01.543  WARN 1 --- [nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required long parameter 'time' is not present]
+ 2020-11-03 00:51:19.218  INFO 1 --- [nio-9999-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ 2020-11-03 00:51:19.218  INFO 1 --- [nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ 2020-11-03 00:51:19.224  INFO 1 --- [nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+ 2020-11-03 00:51:19.249  WARN 1 --- [nio-9999-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required long parameter 'time' is not present]
  Server is up
  Warming up... 20,000 messages
  Pinging 10,000 messages
  Histogram of RTT latencies in microseconds.
         Value     Percentile TotalCount 1/(1-Percentile)
 
-      141.951 0.000000000000          1           1.00
-      186.239 0.100000000000       1016           1.11
-      187.903 0.200000000000       2079           1.25
-      189.951 0.300000000000       3012           1.43
-      195.967 0.400000000000       4016           1.67
-      208.767 0.500000000000       5000           2.00
-      211.711 0.550000000000       5507           2.22
-      213.887 0.600000000000       6007           2.50
-      217.599 0.650000000000       6506           2.86
-      225.279 0.700000000000       7002           3.33
-      235.775 0.750000000000       7512           4.00
-      241.663 0.775000000000       7750           4.44
-      247.935 0.800000000000       8005           5.00
-      255.487 0.825000000000       8252           5.71
-      265.983 0.850000000000       8502           6.67
-      279.295 0.875000000000       8752           8.00
-      286.975 0.887500000000       8875           8.89
-      294.399 0.900000000000       9001          10.00
-      303.871 0.912500000000       9125          11.43
-      315.391 0.925000000000       9255          13.33
-      329.215 0.937500000000       9376          16.00
-      338.175 0.943750000000       9438          17.78
-      346.367 0.950000000000       9500          20.00
-      352.511 0.956250000000       9565          22.86
-      361.727 0.962500000000       9628          26.67
-      370.175 0.968750000000       9689          32.00
-      374.783 0.971875000000       9721          35.56
-      380.927 0.975000000000       9750          40.00
-      389.375 0.978125000000       9786          45.71
-      397.311 0.981250000000       9813          53.33
-      418.815 0.984375000000       9844          64.00
-      428.031 0.985937500000       9860          71.11
-      450.047 0.987500000000       9875          80.00
-      536.575 0.989062500000       9891          91.43
-      564.735 0.990625000000       9907         106.67
-      583.679 0.992187500000       9922         128.00
-      595.967 0.992968750000       9930         142.22
-      606.207 0.993750000000       9938         160.00
-      636.927 0.994531250000       9946         182.86
-      654.847 0.995312500000       9954         213.33
-      680.959 0.996093750000       9961         256.00
-      696.319 0.996484375000       9965         284.44
-      723.967 0.996875000000       9970         320.00
-      745.471 0.997265625000       9973         365.71
-      777.727 0.997656250000       9977         426.67
-      811.519 0.998046875000       9981         512.00
-      840.191 0.998242187500       9983         568.89
-      846.335 0.998437500000       9985         640.00
-      866.303 0.998632812500       9987         731.43
-      881.151 0.998828125000       9989         853.33
-     1005.055 0.999023437500       9992        1024.00
-     1005.055 0.999121093750       9992        1137.78
-     1015.295 0.999218750000       9993        1280.00
-     1092.607 0.999316406250       9994        1462.86
-     1808.383 0.999414062500       9995        1706.67
-     2201.599 0.999511718750       9996        2048.00
-     2201.599 0.999560546875       9996        2275.56
-     2336.767 0.999609375000       9997        2560.00
-     2336.767 0.999658203125       9997        2925.71
-     4964.351 0.999707031250       9998        3413.33
-     4964.351 0.999755859375       9998        4096.00
-     4964.351 0.999780273438       9998        4551.11
-     4972.543 0.999804687500       9999        5120.00
-     4972.543 0.999829101563       9999        5851.43
-     4972.543 0.999853515625       9999        6826.67
-     4972.543 0.999877929688       9999        8192.00
-     4972.543 0.999890136719       9999        9102.22
-     5656.575 0.999902343750      10000       10240.00
-     5656.575 1.000000000000      10000
- #[Mean    =      228.049, StdDeviation   =      113.968]
- #[Max     =     5656.575, Total count    =        10000]
+      141.439 0.000000000000          2           1.00
+      166.143 0.100000000000       1004           1.11
+      186.111 0.200000000000       2005           1.25
+      189.311 0.300000000000       3024           1.43
+      197.887 0.400000000000       4006           1.67
+      211.711 0.500000000000       5009           2.00
+      216.447 0.550000000000       5503           2.22
+      222.591 0.600000000000       6007           2.50
+      230.271 0.650000000000       6505           2.86
+      238.335 0.700000000000       7000           3.33
+      248.319 0.750000000000       7501           4.00
+      254.463 0.775000000000       7756           4.44
+      261.503 0.800000000000       8002           5.00
+      269.567 0.825000000000       8252           5.71
+      278.271 0.850000000000       8507           6.67
+      287.487 0.875000000000       8750           8.00
+      293.887 0.887500000000       8877           8.89
+      301.055 0.900000000000       9003          10.00
+      308.735 0.912500000000       9125          11.43
+      317.951 0.925000000000       9257          13.33
+      327.679 0.937500000000       9376          16.00
+      334.591 0.943750000000       9440          17.78
+      342.271 0.950000000000       9500          20.00
+      349.695 0.956250000000       9567          22.86
+      359.423 0.962500000000       9625          26.67
+      372.991 0.968750000000       9689          32.00
+      379.391 0.971875000000       9719          35.56
+      386.047 0.975000000000       9754          40.00
+      395.519 0.978125000000       9782          45.71
+      408.575 0.981250000000       9813          53.33
+      436.991 0.984375000000       9844          64.00
+      453.375 0.985937500000       9860          71.11
+      514.559 0.987500000000       9875          80.00
+      561.151 0.989062500000       9892          91.43
+      587.775 0.990625000000       9908         106.67
+      625.663 0.992187500000       9922         128.00
+      636.927 0.992968750000       9930         142.22
+      648.191 0.993750000000       9938         160.00
+      681.983 0.994531250000       9946         182.86
+      701.951 0.995312500000       9954         213.33
+      714.239 0.996093750000       9961         256.00
+      726.527 0.996484375000       9965         284.44
+      756.223 0.996875000000       9969         320.00
+      777.727 0.997265625000       9973         365.71
+      803.839 0.997656250000       9977         426.67
+      870.399 0.998046875000       9981         512.00
+      890.367 0.998242187500       9983         568.89
+      944.127 0.998437500000       9985         640.00
+      962.047 0.998632812500       9987         731.43
+     1014.271 0.998828125000       9989         853.33
+     1078.271 0.999023437500       9991        1024.00
+     1098.751 0.999121093750       9992        1137.78
+     1149.951 0.999218750000       9993        1280.00
+     1159.167 0.999316406250       9994        1462.86
+     1257.471 0.999414062500       9995        1706.67
+     1307.647 0.999511718750       9996        2048.00
+     1307.647 0.999560546875       9996        2275.56
+     1353.727 0.999609375000       9997        2560.00
+     1353.727 0.999658203125       9997        2925.71
+     5148.671 0.999707031250       9998        3413.33
+     5148.671 0.999755859375       9998        4096.00
+     5148.671 0.999780273438       9998        4551.11
+     5533.695 0.999804687500       9999        5120.00
+     5533.695 0.999829101563       9999        5851.43
+     5533.695 0.999853515625       9999        6826.67
+     5533.695 0.999877929688       9999        8192.00
+     5533.695 0.999890136719       9999        9102.22
+     6471.679 0.999902343750      10000       10240.00
+     6471.679 1.000000000000      10000
+ #[Mean    =      229.884, StdDeviation   =      122.400]
+ #[Max     =     6471.679, Total count    =        10000]
  #[Buckets =           24, SubBuckets     =         2048]
-transport-benchmarks_ping_1 exited with code 0
-Aborting on container exit...
