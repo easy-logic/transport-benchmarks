@@ -3,5 +3,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "io.easylogic.benchmarks.AeronPingBenchmarkJlbhSingleThread"
+    mainClassName = "io.easylogic.benchmarks.AeronPingBenchmarkHdrHistogram"
 }

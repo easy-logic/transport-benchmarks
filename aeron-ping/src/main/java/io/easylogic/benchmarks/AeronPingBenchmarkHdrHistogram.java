@@ -14,7 +14,8 @@ import org.agrona.concurrent.UnsafeBuffer;
 
 import java.util.concurrent.TimeUnit;
 
-import static io.aeron.samples.SampleConfiguration.*;
+import static io.easylogic.benchmarks.Common.*;
+
 
 public class AeronPingBenchmarkHdrHistogram implements AutoCloseable {
     private static final Histogram HISTOGRAM = new Histogram(TimeUnit.SECONDS.toNanos(10), 3);

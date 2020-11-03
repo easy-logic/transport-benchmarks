@@ -15,7 +15,6 @@ import org.agrona.concurrent.UnsafeBuffer;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static io.aeron.samples.SampleConfiguration.*;
 import static io.easylogic.benchmarks.Common.*;
 
 public class AeronPingBenchmarkJlbhSeparateThread implements JLBHTask {

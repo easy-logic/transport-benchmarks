@@ -38,7 +38,7 @@ subprojects {
 subprojects.findAll { it.name.contains("ping") }.forEach {
     configure(it) {
         dependencies {
-            implementation(project(":common"))
+                implementation(project(":common"))
             implementation("net.openhft:jlbh:$jlbhVersion")
             implementation "org.hdrhistogram:HdrHistogram:${hdrHistogramVersion}"
         }
@@ -51,13 +51,16 @@ import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
 import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 
 subprojects.findAll { it.name.contains("ping") or it.name.contains("pong") }.forEach { project ->
+
     configure(project) {
         apply plugin: 'application'
         ext {
             imageName = "easy-logic/$project.name"
         }
 
-
+        dependencies {
+            implementation(this.project(":common"))
+        }
 
         task removeImage(type: DockerRemoveImage) {
             targetImageId(imageName)

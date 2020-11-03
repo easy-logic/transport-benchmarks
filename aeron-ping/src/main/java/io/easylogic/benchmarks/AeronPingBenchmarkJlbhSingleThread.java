@@ -14,7 +14,8 @@ import org.agrona.concurrent.IdleStrategy;
 import org.agrona.concurrent.SleepingMillisIdleStrategy;
 import org.agrona.concurrent.UnsafeBuffer;
 
-import static io.aeron.samples.SampleConfiguration.*;
+import static io.easylogic.benchmarks.Common.*;
+
 
 public class AeronPingBenchmarkJlbhSingleThread implements JLBHTask {
     private final IdleStrategy idleStrategy = new BusySpinIdleStrategy();
