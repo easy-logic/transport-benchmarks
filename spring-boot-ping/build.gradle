@@ -4,5 +4,5 @@ dependencies {
 }
 
 application {
-	mainClassName = "io.easylogic.benchmarks.spring.SpringBootPingBenchmarkJlbh"
+	mainClassName = "io.easylogic.benchmarks.spring.SpringBootPingBenchmarkHdrHistogram"
 }
