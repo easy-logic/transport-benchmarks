@@ -16,7 +16,7 @@ task removeImage(type: DockerRemoveImage) {
 }
 
 task copyDependencies(type: Copy) {
-    from configurations.default
+    from configurations.compileClasspath
     into "$project.buildDir/libs"
 }
 

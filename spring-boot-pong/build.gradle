@@ -1,7 +1,7 @@
 plugins {
-	id("org.springframework.boot") version  "2.2.5.RELEASE"
-	id("io.spring.dependency-management") version "1.0.9.RELEASE"
+	id("org.springframework.boot") version  "2.4.2"
 }
+apply plugin: "io.spring.dependency-management"
 
 dependencies {
 	implementation(project(":common"))
@@ -10,7 +10,7 @@ dependencies {
 }
 
 application {
-	mainClassName = "io.easylogic.benchmarks.spring.SpringBootPongServer"
+	mainClass = "io.easylogic.benchmarks.spring.SpringBootPongServer"
 }
 
 project.jar.archiveFile.get()

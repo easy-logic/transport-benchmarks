@@ -5,5 +5,5 @@ dependencies {
 }
 
 application {
-	mainClassName = "io.easylogic.benchmarks.rabbit.RabbitPong"
+	mainClass = "io.easylogic.benchmarks.rabbit.RabbitPong"
 }

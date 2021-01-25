@@ -38,7 +38,7 @@ subprojects {
 subprojects.findAll { it.name.contains("ping") }.forEach {
     configure(it) {
         dependencies {
-                implementation(project(":common"))
+            implementation(project(":common"))
             implementation("net.openhft:jlbh:$jlbhVersion")
             implementation "org.hdrhistogram:HdrHistogram:${hdrHistogramVersion}"
         }
@@ -76,7 +76,7 @@ subprojects.findAll { it.name.contains("ping") or it.name.contains("pong") }.for
             from "adoptopenjdk/openjdk14:alpine-jre"
             copyFile("libs/*.jar", "/app/")
             if (!project.name.contains("spring-boot-pong")) {
-                entryPoint(project.provider { ["java", "-cp", "/app/*", project.application.mainClassName] })
+                entryPoint(project.provider { ["java", "-cp", "/app/*", project.application.mainClass.get()] })
             } else {
                 entryPoint(project.provider { ["java", "-jar", "/app/${project.jar.archiveFileName.get()}"] })
             }
